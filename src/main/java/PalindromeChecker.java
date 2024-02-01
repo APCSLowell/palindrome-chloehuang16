@@ -5,9 +5,8 @@ import java.util.Scanner; // Import the Scanner class to read text files
 public class PalindromeChecker {
 public void tester()
 {
-  //String lines[] = loadStrings("palindromes.txt");
-  String[] lines = new String[6]; 
-    try{
+  String lines[] = new String[6];
+  try{
         File myFile = new File("palindromes.txt");
         Scanner myReader = new Scanner(myFile);
         int counter = 0;
@@ -35,15 +34,41 @@ public void tester()
     }
   }
 }
-public boolean palindrome(String word)
+public static boolean palindrome(String sString)
 {
-  //your code here
+  String str="";
+  String word = noCapitals(onlyLetters(sString));
+  for (int i = word.length(); i>0; i--)
+  {
+    str=str+word.substring(i-1, i);
+  }
+  if (str.equals(word))
+  {
+    return true;
+  }
   return false;
 }
 public String reverse(String str)
 {
-    String sNew = new String();
-    //your code here
-    return sNew;
+  String sNew = new String();
+  for (int i = str.length(); i>0; i--)
+  {
+    sNew=sNew+str.substring(i-1, i);
+  }
+  return sNew;
+}
+public static String onlyLetters(String sString) {
+  String str = "";
+  for (int i = 0; i<sString.length(); i++)
+  {
+    if (Character.isLetter(sString.charAt(i)))
+    {
+      str = str+sString.substring(i, i+1);
+    }
+  }
+  return str;
+}
+public static String noCapitals(String sWord) {
+  return sWord.toLowerCase();
 }
 }
